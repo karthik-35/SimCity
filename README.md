@@ -5,7 +5,7 @@ This project is a simulation of Sim City, where you can manage and monitor the g
 
 ## Project Author
 
-Karthikeya Pullemla
+Karthikeya Pullemla_
 
 ## Getting Started
 
