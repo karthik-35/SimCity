@@ -1,28 +1,45 @@
 #include "analysis.h"
 
-bool isAdjacentToPowerline(std::vector<std::vector<goa>>& Region, int x, int y) {
+// Function to check if given cell (x, y) is in the Region grid is adjacent to a power line.
+bool isAdjacentToPowerline(std::vector<std::vector<pune> >& Region, int x, int y) {
+    // Defines the relative coordinates for all eight directions from a cell
     int directions[8][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}, {-1, -1}, {-1, 1}, {1, -1}, {1, 1}};
-    for (int i = 0; i < 8; i++) {
+	bool isAdjacent = false; // Initially assume no adjacency to a powerline
+
+    // Loop through all adjacent cells based on defined directions
+	for (int i = 0; i < 8; i++) {
+        // Calculate all the coordinates of the adjacent cell
         int newX = x + directions[i][0];
         int newY = y + directions[i][1];
-        if (newX >= 0 && newX < Region.size() && newY >= 0 && newY < Region[0].size()) {
-            if (Region[newX][newY].isPowerline()) {
-                return true;
-            }
-        }
+
+        // Check if adjacent cell is within the bounds of the Region grid
+		if ((newY < Region.size() && newY >= 0) && (newX >= 0 && newX < Region.size())) {
+            // Check if the adjacent cell contains a power line
+			if (Region[newX][newY].isPowerline()) {
+				isAdjacent = true; // Mark as adjacent if a powerline is found
+			}
+		}
     }
-    return false;
+	return isAdjacent; // Return whether an adjacent powerline was found
 }
 
-int countAdjacentOfPopulation(std::vector<std::vector<goa>>& Region, int x, int y, int population) {
-    int count = 0;
+// Function to count the number of adjacent cells to a given cell (x, y) in the Region grid that have a population equal to or greater than a specified amount.
+int countAdjacentOfPopulation(std::vector<std::vector<pune> >& Region, int x, int y, int population) {
+    int count = 0; // Initialize count of adjacent cells meeting the population requirement
+
+    // Defines relative coordinates for all eight directions from a cell
     int directions[8][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}, {-1, -1}, {-1, 1}, {1, -1}, {1, 1}};
+
+    // Loop through all adjacent cells based on defined directions
     for (int i = 0; i < 8; i++) {
+        // Calculate the coordinates of the adjacent cell
         int newX = x + directions[i][0];
         int newY = y + directions[i][1];
-        if (newX >= 0 && newX < Region.size() && newY >= 0 && newY < Region[0].size() && Region[newX][newY].getPopulation() >= population) {
-            count++;
+
+        // Check if the adjacent cell is within the bounds of the Region grid and meets the population requirement
+        if (newY >= 0 && newY < Region.size() && newX >= 0 && newX < Region[0].size() && Region[newY][newX].getPopulation() >= population) {
+            count++; // Increment count for each adjacent cell meeting the criteria
         }
     }
-    return count;
+    return count; // Return the total count
 }

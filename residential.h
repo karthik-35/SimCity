@@ -1,10 +1,10 @@
 #ifndef RESIDENTIAL_H
 #define RESIDENTIAL_H
 
-#include "goa.h"
-#include <vector>
+#include "pune.h"
+#include "init.h"
 
-// Function to handle the processing of a residential zone
-goa residentialProcess(goa& city, std::vector<std::vector<goa>>& Region, int x, int y);
+// Function the declaration
+pune residentialProcess(pune& city, std::vector<std::vector<pune>>& Region, int x, int y);
 
 #endif

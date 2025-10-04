@@ -1,12 +1,23 @@
 #ifndef INIT_H
 #define INIT_H
 
+#include <iostream>
+#include <fstream>
 #include <vector>
+#include <sstream>
 #include <string>
-#include "goa.h"
-#include "seasons.h"
+#include "pune.h" 
 
-void Initialize(std::vector<std::vector<goa>> &Region, int &timeLimit, int &refreshRate, std::vector<std::vector<int>> &mapKey);
-void Simulation(std::vector<std::vector<int>> mapKey, std::vector<std::vector<goa>> &Region, int &availableWorkers, int &availableGoods, Season &currentSeason);
+using namespace std;
+
+string ParseConfigLine(string configLine);
+void ParseRegionLine(string &regionLine, vector<pune> &row);
+void ParseConfigFile(string configFileName, string &regionFileName, int &timeLimit, int &refreshRate);
+void ParseRegionFile(vector<vector<pune> > &Region, string regionFileName);
+int GetTotalPollution(vector<vector<pune> > &Region);
+void Initialize(vector<vector<pune> > &Region, int &timeLimit, int &refreshRate, vector<vector<int> > &mapKey);
+
+// Update this line to include availableWorkers and availableGoods by reference
+void Simulation(vector<vector<int> > mapKey, vector<vector<pune> > &Region, int &availableWorkers, int &availableGoods);
 
 #endif
