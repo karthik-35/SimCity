@@ -17,7 +17,7 @@ To run the goa City Simulation, follow these steps:
    
    g++ -std=c++11 -g -o goacity.out punecity.cpp analysis.cpp commercial.cpp industrial.cpp init.cpp main.cpp residential.cpp
 
-3. Use this to see the output
+3. Use this to see the output.
  ./goa.out 
 
 4. For file name, enter
